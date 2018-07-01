@@ -7,7 +7,7 @@ import { Http } from "@angular/http";
 export class InformationService {
 
   info:any = {};
-  aboutTeamData:any = {};
+  aboutTeamData:any[] = [];
   cargada:boolean = false;
   readAbout:boolean = false;
 
@@ -28,7 +28,7 @@ export class InformationService {
    public readAboutData(){
     this.http.get("https://cursoangular-4c4fa.firebaseio.com/equipo.json")
       .subscribe(data =>{
-        console.log(data.json());
+        //console.log(data.json());
         this.aboutTeamData = data.json();
         this.readAbout = true;
       });
