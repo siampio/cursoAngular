@@ -18,6 +18,7 @@ export class ProductsService {
     this.http.get('https://cursoangular-4c4fa.firebaseio.com/productos_idx.json')
           .subscribe( res =>{
             console.log(res.json());
+            this.products = res.json();
           })
     
   }
