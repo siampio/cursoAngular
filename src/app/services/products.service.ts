@@ -7,6 +7,7 @@ import { Http } from "@angular/http";
 export class ProductsService {
 
   products:any[] = [];
+  cargando:boolean = true;
 
   constructor(private http: Http) { 
 
@@ -17,8 +18,12 @@ export class ProductsService {
       
     this.http.get('https://cursoangular-4c4fa.firebaseio.com/productos_idx.json')
           .subscribe( res =>{
-            console.log(res.json());
-            this.products = res.json();
+            //console.log(res.json());
+            setTimeout(()=>{
+              this.products = res.json();
+              this.cargando = false;
+            },1500);
+            
           })
     
   }
