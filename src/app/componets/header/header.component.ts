@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InformationService } from "../../services/information.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,14 @@ import { InformationService } from "../../services/information.service";
 })
 export class HeaderComponent  {
 
-  constructor(public _is:InformationService){
+  constructor(public _is:InformationService,
+              private router: Router){
     
+    
+  }
+
+  buscar_producto( termino:string ){
+    console.log(termino);
+    this.router.navigate(['buscar', termino]);
   }
 }
