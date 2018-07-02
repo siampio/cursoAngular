@@ -28,5 +28,9 @@ export class ProductsService {
     
   }
 
+  public cargar_productobyId(cod:string){
+    return this.http.get(`https://cursoangular-4c4fa.firebaseio.com/productos/${ cod }.json`);
+  }
+
   
 }
