@@ -7,6 +7,7 @@ import { Http } from "@angular/http";
 export class ProductsService {
 
   products:any[] = [];
+  products_filtrado:any[]=[];
   cargando:boolean = true;
 
   constructor(private http: Http) { 
@@ -15,17 +16,48 @@ export class ProductsService {
   }
 
   public readProducts(){
-      
-    this.http.get('https://cursoangular-4c4fa.firebaseio.com/productos_idx.json')
+    
+    let promesa = new Promise((resolve, reject)=>{
+      this.http.get('https://cursoangular-4c4fa.firebaseio.com/productos_idx.json')
           .subscribe( res =>{
             //console.log(res.json());
-            setTimeout(()=>{
+            //setTimeout(()=>{
               this.products = res.json();
               this.cargando = false;
-            },1500);
+              resolve();
+            //},1500);
             
-          })
+          });
+    });
     
+    return promesa;
+  }
+
+  public searchProduct(termino:string){
+
+    console.log('Buscando...');
+
+    if( this.products.length === 0){
+      this.readProducts().then(()=>{
+        //termino carga de objetos
+        this.filtrar_productos(termino);
+      });
+    }else{
+      this.filtrar_productos(termino);
+    }
+      
+  }
+
+  private filtrar_productos( termino:string ){
+      this.products_filtrado = [];  
+      termino = termino.toLowerCase();
+
+      this.products.forEach( prod =>{
+        if( prod.categoria.indexOf(termino)>=0 || prod.titulo.toLowerCase().indexOf(termino)>=0){
+          this.products_filtrado.push(prod);
+        }
+        console.log(prod); 
+      });
   }
 
   public cargar_productobyId(cod:string){
