@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { ProductsService } from '../../services/products.service';
 })
 export class PortafolioComponent  {
   
-  constructor(private _pr:ProductsService){
+  constructor(public _pr:ProductsService){
     
   }
 
