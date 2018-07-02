@@ -14,8 +14,7 @@ export class SearchComponent {
               private _pr:ProductsService) { 
 
     route.params.subscribe( parametros => {
-        this.termino = parametros['termino'];
-        console.log(this.termino);
+        this.termino = parametros['termino'];  
 
         _pr.searchProduct(this.termino);
     });

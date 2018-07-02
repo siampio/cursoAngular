@@ -20,7 +20,7 @@ export class PortafolioItemComponent {
 
       _pr.cargar_productobyId(parametros['id'])
         .subscribe( res =>{
-          console.log(res.json());
+          
           this.producto = res.json();
           this.parametro = parametros['id'];
         });

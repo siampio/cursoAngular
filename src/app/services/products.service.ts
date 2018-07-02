@@ -20,12 +20,12 @@ export class ProductsService {
     let promesa = new Promise((resolve, reject)=>{
       this.http.get('https://cursoangular-4c4fa.firebaseio.com/productos_idx.json')
           .subscribe( res =>{
-            //console.log(res.json());
-            //setTimeout(()=>{
+            
+            setTimeout(()=>{
               this.products = res.json();
               this.cargando = false;
               resolve();
-            //},1500);
+            },1500);
             
           });
     });
@@ -35,7 +35,7 @@ export class ProductsService {
 
   public searchProduct(termino:string){
 
-    console.log('Buscando...');
+    
 
     if( this.products.length === 0){
       this.readProducts().then(()=>{
@@ -56,7 +56,7 @@ export class ProductsService {
         if( prod.categoria.indexOf(termino)>=0 || prod.titulo.toLowerCase().indexOf(termino)>=0){
           this.products_filtrado.push(prod);
         }
-        console.log(prod); 
+        
       });
   }
 
